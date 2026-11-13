@@ -45,8 +45,8 @@
   },
   "packageRules": [
     {
-      "matchPackagePatterns": [
-        "eslint"
+      "matchPackageNames": [
+        "/eslint/"
       ],
       "labels": [
         "linting"
@@ -67,18 +67,12 @@
       ]
     },
     {
-      "lockFileMaintenance": {
-        "automerge": true
-      },
-      "minor": {
-        "automerge": true
-      },
-      "patch": {
-        "automerge": true
-      },
-      "pin": {
-        "automerge": true
-      }
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "pin"
+      ],
+      "automerge": true
     }
   ]
 }
