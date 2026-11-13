@@ -1,17 +1,19 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "labels": ["dependencies"],
+  "labels": [
+    "dependencies"
+  ],
   "digest": {
     "enabled": false
   },
   "docker-compose": {
-    "fileMatch": [
+    "managerFilePatterns": [
       "(^|/)(?:docker-)?compose[^/]*\\.ya?ml$"
     ],
     "enabled": true
   },
   "dockerfile": {
-    "fileMatch": [
+    "managerFilePatterns": [
       "(^|/|\\.)([Dd]ocker|[Cc]ontainer)file$",
       "(^|/)([Dd]ocker|[Cc]ontainer)file[^/]*$"
     ],
@@ -20,25 +22,49 @@
   "pre-commit": {
     "commitMessageTopic": "pre-commit hook {{depName}}",
     "enabled": true,
-    "fileMatch": [
+    "managerFilePatterns": [
       "(^|/)\\.pre-commit-config\\.ya?ml$"
     ],
     "prBodyNotes": [
       "Note: The `pre-commit` manager in Renovate is not supported by the `pre-commit` maintainers or community. Please do not report any problems there, instead [create a Discussion in the Renovate repository](https://github.com/renovatebot/renovate/discussions/new) if you have any questions."
     ]
   },
+  "lockFileMaintenance": {
+    "automerge": true,
+    "enabled": true,
+    "recreateWhen": "always",
+    "branchTopic": "lock-file-maintenance",
+    "commitMessageAction": "Lock file maintenance",
+    "schedule": [
+      "before 4am on monday"
+    ],
+    "groupName": null,
+    "prBodyDefinitions": {
+      "Change": "All locks refreshed"
+    }
+  },
   "packageRules": [
     {
-      "matchPackagePatterns": ["eslint"],
-      "labels": ["linting"]
+      "matchPackagePatterns": [
+        "eslint"
+      ],
+      "labels": [
+        "linting"
+      ]
     },
     {
-      "matchDepTypes": ["optionalDependencies"],
-      "addLabels": ["optional"]
+      "matchDepTypes": [
+        "optionalDependencies"
+      ],
+      "addLabels": [
+        "optional"
+      ]
     },
     {
       "dependencyDashboardApproval": true,
-      "matchDepTypes": ["major"]
+      "matchDepTypes": [
+        "major"
+      ]
     },
     {
       "lockFileMaintenance": {
